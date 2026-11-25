@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>王开发 · 视频设计师 / 视觉设计师 / AI 设计师</title>
+<meta name="description" content="王开发作品集 — 游戏买量素材 · AE 动效 · AI 创意 · 实拍剪辑" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:hsl(240 6% 7%);
+    --fg:#fff;
+    --dim:rgba(255,255,255,.6);
+    --dim2:rgba(255,255,255,.4);
+    --line:rgba(255,255,255,.15);
+    --glass:rgba(255,255,255,.06);
+    --shell:1700px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--fg);overflow-x:hidden;
+    font-family:"Noto Sans SC","Space Grotesk",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .num,.en{font-family:"Space Grotesk","Noto Sans SC",ui-sans-serif,sans-serif}
+  .shell{width:100%;max-width:var(--shell);margin:0 auto;padding:0 40px}
+  @media (max-width:768px){ .shell{padding:0 24px} }
+  .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.4);font-family:"Space Grotesk","Noto Sans SC",sans-serif}
+  .sec{padding:128px 0}
+  @media (max-width:768px){ .sec{padding:96px 0} }
+
+  /* ================= NAV ================= */
+  header{position:fixed;top:0;left:0;right:0;z-index:70;transition:background .5s,border-color .5s,backdrop-filter .5s;border-bottom:1px solid transparent}
+  header.solid{background:rgba(17,17,20,.8);backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);border-bottom-color:rgba(255,255,255,.08)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px}
+  .logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:#fff}
+  .logo b{font-size:15px;letter-spacing:.08em;font-weight:600}
+  .logo i{font-style:normal;font-size:10px;letter-spacing:.26em;color:rgba(255,255,255,.34)}
+  .nav-links{display:flex;align-items:center;gap:38px}
+  .nav-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;letter-spacing:.08em;transition:color .25s}
+  .nav-links a:hover{color:#fff}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+    background:#fff;color:#000;border-radius:999px;padding:11px 22px;font-size:12px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;transition:transform .25s,box-shadow .25s;
+  }
+  .pill:hover{transform:translateY(-1px);box-shadow:0 10px 30px -12px rgba(255,255,255,.5)}
+  .burger{display:none;width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:var(--glass);color:#fff;cursor:pointer;align-items:center;justify-content:center}
+  @media (max-width:900px){
+    .nav-links{display:none}
+    .burger{display:flex}
+  }
+  .mobile-menu{
+    display:none;position:fixed;inset:0;z-index:80;background:rgba(10,10,12,.98);backdrop-filter:blur(20px);
+    padding:110px 24px 40px;flex-direction:column;gap:8px;
+  }
+  .mobile-menu.on{display:flex}
+  .mobile-menu a{color:#fff;text-decoration:none;font-size:26px;font-weight:600;letter-spacing:.02em;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .mm-close{position:absolute;top:18px;right:24px;width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;font-size:18px;cursor:pointer}
+
+  /* ================= HERO ================= */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg video{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(.75) brightness(.3);transform:scale(1.02)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.6)}
+  .hero-fade{position:absolute;left:0;right:0;bottom:0;height:38%;z-index:1;
+    background:linear-gradient(180deg,rgba(17,17,20,0),var(--bg));pointer-events:none}
+  .hero-in{position:relative;z-index:3;width:100%;padding-top:90px}
+  .hero h1{
+    margin-top:34px;font-weight:900;line-height:.85;letter-spacing:-.03em;
+    font-size:clamp(56px,10vw,160px);
+  }
+  .hero h1 .solid{display:block;color:#fff}
+  .hero h1 .line{display:block;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.85)}
+  .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-top:56px;flex-wrap:wrap}
+  .hero-foot p{max-width:430px;color:var(--dim);font-size:15px;line-height:1.95}
+  .scroll-hint{
+    position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.4);
+  }
+  .scroll-hint svg{animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* ================= SECTION HEAD ================= */
+  .head{display:flex;align-items:flex-end;gap:28px;margin-bottom:56px}
+  .head-line{flex:1;height:1px;background:var(--line);margin-bottom:14px}
+  .head h2{font-size:clamp(34px,4.4vw,64px);font-weight:900;letter-spacing:-.03em;line-height:1}
+  .head .idx-bar{display:flex;flex-direction:column;gap:14px;margin-bottom:6px}
+  @media (max-width:640px){ .head{gap:16px} .head-line{display:none} }
+
+  /* ================= WORKS ================= */
+  .tabs{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;margin-bottom:36px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    flex:0 0 auto;display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+    border-radius:999px;padding:10px 20px;font-size:13px;letter-spacing:.02em;white-space:nowrap;
+    background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);
+    transition:all .25s;font-family:inherit;
+  }
+  .tab:hover{border-color:rgba(255,255,255,.5);color:rgba(255,255,255,.9)}
+  .tab .dot{width:6px;height:6px;border-radius:999px;background:rgba(255,255,255,.45)}
+  .tab .cnt{font-family:"Space Grotesk",sans-serif;font-size:11px;color:rgba(255,255,255,.4)}
+  .tab.active{background:#fff;border-color:#fff;color:#000;font-weight:600}
+  .tab.active .dot{background:#000}
+  .tab.active .cnt{color:rgba(0,0,0,.6)}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+  @media (max-width:1024px){ .grid{grid-template-columns:repeat(2,1fr);gap:24px} }
+  @media (max-width:640px){ .grid{grid-template-columns:repeat(2,1fr);gap:12px} }
+
+  .card{
+    position:relative;border:1px solid rgba(255,255,255,.1);background:#0b0b0d;cursor:pointer;
+    overflow:hidden;transition:border-color .3s,transform .3s;display:block;
+  }
+  .card:hover{border-color:rgba(255,255,255,.4);transform:translateY(-4px)}
+  .card .media{position:relative;width:100%;background:#000}
+  .card .media.v{aspect-ratio:9/16}
+  .card .media.h{aspect-ratio:16/9}
+  .card .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .card .media .btn-play{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:56px;height:56px;border-radius:999px;border:1px solid rgba(255,255,255,.4);
+    background:rgba(0,0,0,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    display:flex;align-items:center;justify-content:center;transition:transform .3s,opacity .3s;
+  }
+  .card:hover .media .btn-play{opacity:0}
+  .card .cap{
+    position:absolute;left:0;right:0;bottom:0;padding:46px 16px 14px;
+    background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.82));
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .card .cap b{font-size:14px;font-weight:500;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .card .cap i{font-style:normal;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);flex:0 0 auto}
+  @media (max-width:640px){ .card .cap{padding:30px 10px 10px} .card .cap b{font-size:12px} .card .cap i{display:none} }
+
+  .expand-wrap{display:flex;justify-content:center;margin-top:52px}
+  .expand{
+    display:inline-flex;align-items:center;gap:10px;cursor:pointer;border-radius:999px;
+    background:transparent;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);
+    padding:15px 32px;font-size:13px;letter-spacing:.1em;transition:all .25s;font-family:inherit;
+  }
+  .expand:hover{border-color:rgba(255,255,255,.5);color:#fff}
+
+  /* ================= ABOUT ================= */
+  .about{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+  @media (max-width:1024px){ .about{grid-template-columns:1fr;gap:44px} }
+  .portrait{position:relative;border:1px solid rgba(255,255,255,.15);background:#000;overflow:hidden;aspect-ratio:4/5}
+  .portrait img{width:100%;height:100%;object-fit:cover}  /* 照片保持原始彩色，不加黑白滤镜 */
+  .portrait .name{
+    position:absolute;left:0;right:0;bottom:0;padding:36px 22px 20px;
+    background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.9));
+  }
+  .portrait .name b{display:block;font-size:24px;font-weight:700;letter-spacing:.02em}
+  .portrait .name span{display:block;margin-top:6px;font-size:10px;letter-spacing:.26em;color:rgba(255,255,255,.5);text-transform:uppercase}
+  .contact-grid{
+    display:grid;grid-template-columns:1fr 1fr;margin-top:22px;
+    border-top:1px solid rgba(255,255,255,.12);border-left:1px solid rgba(255,255,255,.12);
+  }
+  .cbox{
+    display:flex;align-items:center;gap:11px;padding:16px 14px;
+    border-right:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);
+    text-decoration:none;color:#fff;transition:background .25s;
+  }
+  .cbox:hover{background:rgba(255,255,255,.04)}
+  .cbox svg{width:15px;height:15px;flex:0 0 auto;stroke:rgba(255,255,255,.45);fill:none;stroke-width:1.4}
+  .cbox div{min-width:0}
+  .cbox u{display:block;text-decoration:none;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.34)}
+  .cbox b{display:block;margin-top:5px;font-size:12.5px;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tools-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .tools-row i{font-style:normal;font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.14);padding:7px 12px}
+
+  .bio h3{font-size:24px;font-weight:300;letter-spacing:.01em;line-height:1.5}
+  .bio .body{margin-top:24px;font-size:14.5px;line-height:2.05;color:rgba(255,255,255,.62)}
+  .bio .quote{
+    margin-top:26px;padding-left:18px;border-left:2px solid rgba(255,255,255,.22);
+    font-size:14px;line-height:2;color:rgba(255,255,255,.5);font-style:italic;
+  }
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:40px;
+    border-top:1px solid rgba(255,255,255,.12);border-left:1px solid rgba(255,255,255,.12)}
+  .stat{padding:24px 18px;border-right:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)}
+  .stat b{display:block;font-size:34px;font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+  .stat span{display:block;margin-top:12px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+  @media (max-width:768px){ .stats{grid-template-columns:repeat(2,1fr)} .stat b{font-size:28px} }
+
+  .timeline{position:relative;margin-top:56px;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:rgba(255,255,255,.16)}
+  .tl{position:relative;padding:0 0 40px}
+  .tl:last-child{padding-bottom:0}
+  .tl::before{content:"";position:absolute;left:-30px;top:6px;width:9px;height:9px;border-radius:999px;background:#fff}
+  .tl .when{font-family:"Space Grotesk",sans-serif;font-size:11.5px;letter-spacing:.12em;color:rgba(255,255,255,.4)}
+  .tl h4{margin-top:10px;font-size:17px;font-weight:600;letter-spacing:.01em}
+  .tl p{margin-top:10px;font-size:13.5px;line-height:1.95;color:rgba(255,255,255,.58);max-width:720px}
+  .award{display:inline-flex;align-items:center;gap:7px;margin-top:12px;font-size:11px;
+    border:1px solid rgba(255,255,255,.24);padding:6px 11px;color:rgba(255,255,255,.85)}
+  .award svg{width:12px;height:12px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:1.5}
+
+  .edu{margin-top:36px;border:1px solid rgba(255,255,255,.12);padding:24px 22px}
+  .edu .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .edu h4{font-size:16px;font-weight:600}
+  .edu .when{font-family:"Space Grotesk",sans-serif;font-size:11.5px;letter-spacing:.12em;color:rgba(255,255,255,.4)}
+  .edu .maj{margin-top:8px;font-size:12.5px;color:rgba(255,255,255,.55);letter-spacing:.04em}
+  .edu .courses{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .edu .courses i{font-style:normal;font-size:11px;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.13);padding:6px 10px}
+
+  /* ================= SKILLS ================= */
+  .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1)}
+  @media (max-width:1024px){ .skills{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:640px){ .skills{grid-template-columns:1fr} }
+  .skill{position:relative;background:var(--bg);padding:38px 30px 40px;transition:transform .3s,border-color .3s;overflow:hidden}
+  .skill:hover{transform:translateY(-2px);background:#131316}
+  .skill .big{position:absolute;right:18px;top:6px;font-family:"Space Grotesk",sans-serif;font-size:64px;font-weight:900;color:rgba(255,255,255,.1);line-height:1;transition:color .5s}
+  .skill:hover .big{color:rgba(255,255,255,.2)}
+  .skill h4{position:relative;font-size:18px;font-weight:600;margin-top:60px;letter-spacing:.01em;z-index:2}
+  .skill p{position:relative;margin-top:12px;font-size:13px;line-height:1.95;color:rgba(255,255,255,.56);z-index:2}
+  .skill .underline{position:absolute;left:0;bottom:0;height:1px;width:0;background:#fff;transition:width .7s cubic-bezier(.2,.7,.2,1)}
+  .skill:hover .underline{width:100%}
+
+  /* ================= CONTACT ================= */
+  .contact{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:128px 0 40px;position:relative}
+  .contact h2{font-weight:900;line-height:.9;letter-spacing:-.03em;font-size:clamp(44px,9vw,150px);margin-top:26px}
+  .contact h2 .solid{display:block}
+  .contact h2 .line{display:block;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.8)}
+  .crows{margin-top:70px;border-top:1px solid rgba(255,255,255,.15)}
+  .crow{
+    display:flex;align-items:center;gap:22px;padding:24px 6px;
+    border-bottom:1px solid rgba(255,255,255,.15);text-decoration:none;color:#fff;
+    transition:background .25s;position:relative;
+  }
+  .crow:hover{background:rgba(255,255,255,.02)}
+  .crow svg.ic{width:22px;height:22px;stroke:rgba(255,255,255,.4);fill:none;stroke-width:1.2;flex:0 0 auto;transition:stroke .25s}
+  .crow:hover svg.ic{stroke:#fff}
+  .crow .txt{flex:1}
+  .crow u{display:block;text-decoration:none;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.34)}
+  .crow b{display:block;margin-top:8px;font-size:20px;font-weight:300;letter-spacing:.01em}
+  .crow svg.arw{width:16px;height:16px;stroke:rgba(255,255,255,.35);fill:none;stroke-width:1.4;transition:transform .3s,stroke .3s}
+  .crow:hover svg.arw{transform:translate(3px,-3px);stroke:#fff}
+  @media (max-width:640px){ .crow b{font-size:16px} }
+  .socials{display:flex;gap:26px;margin-top:32px}
+  .socials a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:rgba(255,255,255,.45);font-size:11px;letter-spacing:.2em;text-transform:uppercase;transition:color .25s}
+  .socials a:hover{color:#fff}
+  .socials .d{width:5px;height:5px;border-radius:999px;background:rgba(255,255,255,.3)}
+  footer{border-top:1px solid rgba(255,255,255,.08);margin-top:56px;padding:22px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+  /* ================= LIGHTBOX ================= */
+  .lb{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:5vh 4vw;
+    background:rgba(8,8,10,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+  .lb.on{display:flex}
+  .lb-box{max-width:min(1500px,94vw);display:flex;flex-direction:column;gap:14px}
+  .lb video{max-width:100%;max-height:80vh;background:#000;border:1px solid rgba(255,255,255,.16);display:block;margin:0 auto}
+  .lb-bar{display:flex;align-items:center;justify-content:space-between;gap:18px;color:rgba(255,255,255,.5);font-size:12px}
+  .lb-bar b{color:#fff;font-weight:500;font-size:13px}
+  .lb-mute{border:1px solid rgba(255,255,255,.24);background:transparent;color:rgba(255,255,255,.6);
+    border-radius:999px;padding:7px 14px;font-size:11px;letter-spacing:.1em;cursor:pointer;font-family:inherit;transition:all .25s}
+  .lb-mute:hover{color:#fff;border-color:#fff}
+  .lb-close{position:fixed;top:22px;right:24px;width:44px;height:44px;border-radius:999px;cursor:pointer;
+    border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .lb-close:hover{background:#fff;color:#000}
+
+  /* ================= REVEAL ================= */
+  .rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .d1{transition-delay:.15s}.d2{transition-delay:.3s}.d3{transition-delay:.45s}
+  @media (prefers-reduced-motion:reduce){ .rv{opacity:1;transform:none;transition:none} }
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mmenu">
+  <button class="mm-close" id="mmClose">✕</button>
+  <a href="#top">首页</a>
+  <a href="#about">关于</a>
+  <a href="#works">作品</a>
+  <a href="#skills">优势</a>
+  <a href="#contact">联系</a>
+</div>
+
+<header id="nav">
+  <div class="shell nav">
+    <a class="logo" href="#top"><b>王开发</b><i class="en">WANG KAIFA</i></a>
+    <nav class="nav-links">
+      <a href="#top">首页</a>
+      <a href="#about">关于</a>
+      <a href="#works">作品</a>
+      <a href="#skills">优势</a>
+      <a href="#contact">联系</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:14px">
+      <a class="pill en" href="mailto:1396384161@qq.com">联系我</a>
+      <button class="burger" id="burger" aria-label="菜单">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 1h16M1 7h16M1 13h16" stroke="#fff" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <video src="https://aka.doubaocdn.com/s/9Asrsgl9jy" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+  <div class="hero-fade"></div>
+  <div class="shell hero-in">
+    <span class="eyebrow rv">视频设计师 / 视觉设计师 / AI 设计师</span>
+    <h1>
+      <span class="solid rv d1">KAIFA,</span>
+      <span class="line rv d2 en">WANG</span>
+      <span class="line rv d3 en">Visual Designer.</span>
+    </h1>
+    <div class="hero-foot">
+      <p class="rv d2">以视觉叙事驱动创意，从脚本到成片全链路落地，5 年深耕海外游戏买量与品牌视频领域。</p>
+      <a class="pill rv d3" href="#works">My Portfolio
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6l5 5 5-5" stroke="#000" stroke-width="1.6"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint en">
+    <span>Scroll</span>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7l6 6 6-6" stroke="rgba(255,255,255,.45)" stroke-width="1.4"/></svg>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="shell">
+    <div class="head rv">
+      <div class="idx-bar"><span class="eyebrow">01 — About</span></div>
+      <h2>关于</h2>
+      <div class="head-line"></div>
+    </div>
+
+    <div class="about">
+      <div>
+        <!-- ================================================================
+             ★★★ 这里就是「关于 / 简介」左边那张人物图 —— 换成你自己的自拍 ★★★
+             ----------------------------------------------------------------
+             方法 A（最省事，推荐）：
+               1. 把你的自拍命名为 selfie.jpg（建议竖版 3:4 或 4:5，长边 1200 像素左右）
+               2. 把 selfie.jpg 和本文件 index.html 放在同一个文件夹里
+               3. 把下面这一行的 src 改成：src="selfie.jpg"
+               4. 保存后刷新页面，照片就换成你的了（本地可以看，上传到网站后也能看）
+
+             方法 B（用网络图片地址）：
+               把 selfie.jpg 传到任意图床 / 对象存储，拿到一条 .jpg 的直链，
+               再把下面 src 里的网址替换成那条直链即可。
+
+             另外两个位置也能一起改：
+               alt="王开发"            → 图片加载失败时显示的备用文字
+               下方 <b>王开发</b> 和 <span>Wang Kaifa</span> → 照片上压着的名字
+             ================================================================ -->
+        <div class="portrait rv">
+          <img src="selfie.jpg" alt="王开发" loading="lazy" />
+          <div class="name"><b>王开发</b><span class="en">Wang Kaifa</span></div>
+        </div>
+        <div class="contact-grid rv">
+          <div class="cbox">
+            <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <div><u>City</u><b>深圳</b></div>
+          </div>
+          <a class="cbox" href="mailto:1396384161@qq.com">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg>
+            <div><u>Email</u><b>1396384161@qq.com</b></div>
+          </a>
+          <a class="cbox" href="tel:+8618711355008">
+            <svg viewBox="0 0 24 24"><path d="M6 3h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A18 18 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg>
+            <div><u>Phone</u><b>(+86) 187-1135-5008</b></div>
+          </a>
+          <div class="cbox">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 1 1-4.7-7.6"/><path d="M21 4v5h-5"/></svg>
+            <div><u>WeChat</u><b>Whim-7K</b></div>
+          </div>
+        </div>
+        <div class="tools-row rv"><i>After Effects</i><i>Premiere Pro</i><i>Photoshop</i><i>Illustrator</i><i>CorelDRAW</i></div>
+      </div>
+
+      <div class="bio">
+        <h3 class="rv">视频设计师 / 视觉设计师 / AI 设计师</h3>
+        <div class="body rv d1">
+          <p>2020 年进入游戏买量素材行业，从短视频策划剪辑做起，先后进入翻江倒海互动娱乐负责 Moneyball弹球游戏、AI Mirror 的买量素材创意和app内滤镜封面特效制作，后进入冰川网络，接触小游戏「一个不留」「画线救狗」「一秒八刀」等项目的素材动画与脚本创意。</p>
+          <p style="margin-top:16px">擅长把创意脚本、AE 动效、AI 生成影像与实拍剪辑串成一条完整的生产链路：从首帧钩子、玩法演示到收尾转化，都能独立完成。习惯按投放数据回收、快速迭代版本，也熟悉美、日、韩、港澳台多地区的题材偏好与审片差异。</p>
+        </div>
+        <div class="quote rv d2">乐观开朗，沟通协作能力强，认同 1+1&gt;2 的团队理念；目标导向，学习速度快，能快速吸收新工具与新风格并落地到项目中。</div>
+
+        <div class="stats rv d2">
+          <div class="stat"><b class="en">81+</b><span>成片作品</span></div>
+          <div class="stat"><b class="en">5</b><span>作品分类</span></div>
+          <div class="stat"><b class="en">5+</b><span>年行业经验</span></div>
+          <div class="stat"><b class="en">5+</b><span>语言版本</span></div>
+        </div>
+
+        <div class="timeline rv d3">
+          <div class="tl">
+            <div class="when en">2024.03 — 至今</div>
+            <h4>冰川网络 · 视频设计师</h4>
+            <p>负责「一个不留」「画线救狗」「一秒八刀」等多个项目的买量素材动画制作及素材脚本创意，覆盖休闲玩法演示、剧情钩子与抽卡演出。</p>
+            <span class="award"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 5H5v2a3 3 0 0 0 3 3M16 5h3v2a3 3 0 0 1-3 3"/><path d="M10 13v3h4v-3M8 20h8"/></svg>2024 最佳「突飞猛进」奖</span>
+          </div>
+          <div class="tl">
+            <div class="when en">2022.02 — 2024.02</div>
+            <h4>翻江倒海互动娱乐有限公司 · 视频设计师</h4>
+            <p>负责 Moneyball 游戏及 AI Mirror 应用买量素材的创意脚本、动画、配音、配乐全流程制作，产出大量风格化模板与 AI 影像创意。</p>
+            <span class="award"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 5H5v2a3 3 0 0 0 3 3M16 5h3v2a3 3 0 0 1-3 3"/><path d="M10 13v3h4v-3M8 20h8"/></svg>年度优秀 4 星员工</span>
+          </div>
+          <div class="tl">
+            <div class="when en">2020.06 — 2021.12</div>
+            <h4>湖南鹿鹿白服饰有限公司 · 短视频设计师</h4>
+            <p>负责短视频方案策划、短视频剪辑、配音、配乐输出，以及直播间搭建。</p>
+          </div>
+        </div>
+
+        <div class="edu rv d3">
+          <div class="row">
+            <h4>湖南工业大学 · 包装设计艺术学院</h4>
+            <span class="when en">2016.09 — 2020.06</span>
+          </div>
+          <div class="maj">数字媒体艺术 · 本科</div>
+          <div class="courses">
+            <i>影视后期合成</i><i>影视剪辑</i><i>版式设计</i><i>视觉设计基础</i>
+            <i>CG 插画创作</i><i>HTML5+CSS3 网页设计基础</i><i>三维动画基础</i><i>交互设计</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="works">
+  <div class="shell">
+    <div class="head rv">
+      <div class="idx-bar"><span class="eyebrow">02 — Selected Works</span></div>
+      <h2>作品</h2>
+      <div class="head-line"></div>
+    </div>
+    <div class="tabs" id="tabs"></div>
+    <div class="grid" id="grid"></div>
+    <div class="expand-wrap" id="expandWrap">
+      <button class="expand" id="expandBtn">展开全部作品（81）
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6l5 5 5-5" stroke="rgba(255,255,255,.6)" stroke-width="1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="skills">
+  <div class="shell">
+    <div class="head rv">
+      <div class="idx-bar"><span class="eyebrow">03 — Capabilities</span></div>
+      <h2>核心能力</h2>
+      <div class="head-line"></div>
+    </div>
+    <div class="skills rv">
+      <div class="skill"><span class="big en">01</span><h4>视觉体系</h4><p>版画平涂与写实混合的插画语言，能把一套品牌视觉统一起来。</p><div class="underline"></div></div>
+      <div class="skill"><span class="big en">02</span><h4>AI 生成与控制</h4><p>用 AI 生成真实感场景与角色，控制跨镜头、跨版本的一致性。</p><div class="underline"></div></div>
+      <div class="skill"><span class="big en">03</span><h4>动效与剪辑</h4><p>AE 动效、卡点剪辑、多版本导出，把一个创意快速拆成多渠道素材。</p><div class="underline"></div></div>
+      <div class="skill"><span class="big en">04</span><h4>品牌落地</h4><p>从封面、模板、贴纸位到落地页的视觉延伸，保证对外呈现一致。</p><div class="underline"></div></div>
+      <div class="skill"><span class="big en">05</span><h4>多语言本地化</h4><p>同一创意同步产出英 / 日 / 西 / 韩 / 中版本，适配不同地区投放。</p><div class="underline"></div></div>
+      <div class="skill"><span class="big en">06</span><h4>数据视角</h4><p>按投放数据回收迭代素材，钩子与首帧优先，用结果反推创意。</p><div class="underline"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="shell">
+    <div class="rv">
+      <span class="eyebrow">04 — Contact</span>
+      <h2>
+        <span class="solid">有项目合作？</span>
+        <span class="line">聊聊看。</span>
+      </h2>
+    </div>
+    <div class="crows rv d1">
+      <a class="crow" href="mailto:1396384161@qq.com">
+        <svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg>
+        <div class="txt"><u>Email</u><b>1396384161@qq.com</b></div>
+        <svg class="arw" viewBox="0 0 16 16"><path d="M3 13L13 3M5 3h8v8"/></svg>
+      </a>
+      <a class="crow" href="tel:+8618711355008">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M6 3h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A18 18 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg>
+        <div class="txt"><u>Phone</u><b>(+86) 187-1135-5008</b></div>
+        <svg class="arw" viewBox="0 0 16 16"><path d="M3 13L13 3M5 3h8v8"/></svg>
+      </a>
+      <div class="crow" style="cursor:default">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 1 1-4.7-7.6"/><path d="M21 4v5h-5"/></svg>
+        <div class="txt"><u>WeChat</u><b>Whim-7K</b></div>
+      </div>
+    </div>
+    <div class="socials rv d2">
+      <a href="#"><span class="d"></span>站酷<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M5 3h8v8" stroke="rgba(255,255,255,.4)" stroke-width="1.4"/></svg></a>
+      <a href="#"><span class="d"></span>Behance<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M5 3h8v8" stroke="rgba(255,255,255,.4)" stroke-width="1.4"/></svg></a>
+    </div>
+    <footer>
+      <span class="en">© 2026 WANG KAIFA</span>
+      <span>深圳 · All rights reserved</span>
+    </footer>
+  </div>
+</section>
+
+<div class="lb" id="lb">
+  <button class="lb-close" id="lbClose" aria-label="关闭">✕</button>
+  <div class="lb-box">
+    <video id="lbVideo" controls playsinline></video>
+    <div class="lb-bar"><b id="lbTitle"></b><button class="lb-mute" id="lbMute">取消静音</button></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================================
+   ★★★ 作品数据区：全站 81 条作品都在这里 ★★★
+   ----------------------------------------------------------------------------
+   每一行就是一张作品卡，格式固定为：
+       {t:"标题", u:"视频地址", c:"分类", o:"V"}
+
+   t = 卡片上显示的名字（想改名字就改引号里的中文）
+   u = 视频的直接下载地址（想换视频就换这一串网址）
+   c = 属于哪个分类，只能是下面 5 个名字之一：AI 创意 / 游戏 / 风格模板 / ae 特效 / 实拍剪辑
+   o = 视频是竖的还是横的：V 表示竖版（9:16），H 表示横版（16:9），填错会导致画面被裁
+
+   注意：每条结尾都有一个英文逗号，删行或加行时别把它弄丢；
+        所有引号都要用英文双引号 " ，不能用中文引号，否则整页会白屏。
+   ============================================================================ */
+const DATA = [
+ {t:"地盘抢夺 · 沙漠对峙",u:"https://aka.doubaocdn.com/s/T7C4HOUdWF",c:"AI 创意",o:"V"},
+ {t:"灯塔 · 等级评定",u:"https://aka.doubaocdn.com/s/vEgxS892Oc",c:"AI 创意",o:"V"},
+ {t:"雏田开宝 · 猫眼切换",u:"https://aka.doubaocdn.com/s/HswEAxshYI",c:"AI 创意",o:"V"},
+ {t:"汽修库打扮 · 日语版",u:"https://aka.doubaocdn.com/s/nQCvF0VWcZ",c:"AI 创意",o:"V"},
+ {t:"西部劫匪 · 日语版",u:"https://aka.doubaocdn.com/s/IhElqECoEz",c:"AI 创意",o:"V"},
+ {t:"送油被臭跑 · 日语版",u:"https://aka.doubaocdn.com/s/swz7K8exjV",c:"AI 创意",o:"V"},
+ {t:"超市场景 · 猫眼切换",u:"https://aka.doubaocdn.com/s/frhafQgqVL",c:"AI 创意",o:"V"},
+ {t:"模拟经营 · 英文版",u:"https://aka.doubaocdn.com/s/5smK8SjiFz",c:"AI 创意",o:"V"},
+ {t:"三人开箱",u:"https://aka.doubaocdn.com/s/CBC1x1lVDj",c:"AI 创意",o:"V"},
+ {t:"修女背影",u:"https://aka.doubaocdn.com/s/SeqK6wbUTL",c:"AI 创意",o:"V"},
+ {t:"入室整蛊",u:"https://aka.doubaocdn.com/s/9NHx2JtqnB",c:"AI 创意",o:"V"},
+ {t:"咸猪手",u:"https://aka.doubaocdn.com/s/tqrew86UKN",c:"AI 创意",o:"V"},
+ {t:"大好真真子",u:"https://aka.doubaocdn.com/s/1qXHTL9DXt",c:"AI 创意",o:"V"},
+ {t:"电车劫匪 · 日语版",u:"https://aka.doubaocdn.com/s/dzuU2odkyL",c:"AI 创意",o:"V"},
+ {t:"仓库打扮三选一 · 英文版",u:"https://aka.doubaocdn.com/s/k5BJFVKH5u",c:"AI 创意",o:"V"},
+ {t:"打拳 · 英文版",u:"https://aka.doubaocdn.com/s/e0Rkf7rLqb",c:"AI 创意",o:"V"},
+ {t:"蒂法换装",u:"https://aka.doubaocdn.com/s/UiXo6iwBuO",c:"AI 创意",o:"V"},
+ {t:"薇薇安换装",u:"https://aka.doubaocdn.com/s/vUiSzi4LG0",c:"AI 创意",o:"V"},
+ {t:"起量素材 · 换装",u:"https://aka.doubaocdn.com/s/B2upISjFrV",c:"AI 创意",o:"V"},
+ {t:"足球少女 · 智利队",u:"https://aka.doubaocdn.com/s/eA8goVcO6d",c:"AI 创意",o:"V"},
+ {t:"入室劫匪 · 韩语版",u:"https://aka.doubaocdn.com/s/mJDKB9p26D",c:"AI 创意",o:"V"},
+ {t:"Pretty Soldier",u:"https://aka.doubaocdn.com/s/KrlVSuPVha",c:"ae 特效",o:"V"},
+ {t:"埃及法老",u:"https://aka.doubaocdn.com/s/CaU7ljmUWM",c:"ae 特效",o:"V"},
+ {t:"90s 初恋",u:"https://aka.doubaocdn.com/s/Q1EozSFUEr",c:"ae 特效",o:"V"},
+ {t:"抽象波普",u:"https://aka.doubaocdn.com/s/bRcAnElz4a",c:"ae 特效",o:"V"},
+ {t:"领结侦探",u:"https://aka.doubaocdn.com/s/u63Vd6AjSn",c:"ae 特效",o:"V"},
+ {t:"北极星",u:"https://aka.doubaocdn.com/s/fXirdKdO4D",c:"ae 特效",o:"V"},
+ {t:"咒术冲撞",u:"https://aka.doubaocdn.com/s/VTmtY9q5AX",c:"ae 特效",o:"V"},
+ {t:"钢之炼金",u:"https://aka.doubaocdn.com/s/wDq6JSTtMZ",c:"ae 特效",o:"V"},
+ {t:"夏日祭",u:"https://aka.doubaocdn.com/s/EQJUfIdbMY",c:"ae 特效",o:"V"},
+ {t:"王国之泪",u:"https://aka.doubaocdn.com/s/BZtSjPrF2Q",c:"ae 特效",o:"V"},
+ {t:"机甲少女",u:"https://aka.doubaocdn.com/s/xbC9hUZu3C",c:"ae 特效",o:"V"},
+ {t:"奇妙冒险",u:"https://aka.doubaocdn.com/s/sqhHIUQV7g",c:"ae 特效",o:"V"},
+ {t:"女仆装扮",u:"https://aka.doubaocdn.com/s/jWMPgO0J7m",c:"ae 特效",o:"V"},
+ {t:"圣骑士",u:"https://aka.doubaocdn.com/s/p6OohnUOVZ",c:"ae 特效",o:"V"},
+ {t:"星空少女",u:"https://aka.doubaocdn.com/s/onUTO6UvGq",c:"ae 特效",o:"V"},
+ {t:"水彩",u:"https://aka.doubaocdn.com/s/HqwnCFra7r",c:"ae 特效",o:"V"},
+ {t:"激斗格斗",u:"https://aka.doubaocdn.com/s/WgAOZ98B8q",c:"ae 特效",o:"V"},
+ {t:"转场 · 无 Logo 版",u:"https://aka.doubaocdn.com/s/gEhVt8b8Ae",c:"ae 特效",o:"V"},
+ {t:"灌篮 dunkJam",u:"https://aka.doubaocdn.com/s/msVfwtN0dM",c:"ae 特效",o:"V"},
+ {t:"黄家精选",u:"https://aka.doubaocdn.com/s/DHnDKlwdG2",c:"ae 特效",o:"V"},
+ {t:"JK 制服展示 01",u:"https://aka.doubaocdn.com/s/ZHNDE54fvB",c:"实拍剪辑",o:"H"},
+ {t:"JK 制服展示 02",u:"https://aka.doubaocdn.com/s/ABkUZzxvCY",c:"实拍剪辑",o:"H"},
+ {t:"JK 制服展示 03",u:"https://aka.doubaocdn.com/s/52PO2HhTI6",c:"实拍剪辑",o:"H"},
+ {t:"JK 制服展示 04",u:"https://aka.doubaocdn.com/s/xkmKyMWT3R",c:"实拍剪辑",o:"H"},
+ {t:"JK 制服展示 05",u:"https://aka.doubaocdn.com/s/DVPw6HOYDl",c:"实拍剪辑",o:"H"},
+ {t:"JK 制服展示 06",u:"https://aka.doubaocdn.com/s/8vB5Z2UMSN",c:"实拍剪辑",o:"H"},
+ {t:"JK 制服展示 07",u:"https://aka.doubaocdn.com/s/OnlilVKeKs",c:"实拍剪辑",o:"H"},
+ {t:"创意拯救 · 世界杯观赛",u:"https://aka.doubaocdn.com/s/yh4RZZs1cA",c:"游戏",o:"V"},
+ {t:"创意拯救 · 拉环机关 02",u:"https://aka.doubaocdn.com/s/uDSdkv67HK",c:"游戏",o:"V"},
+ {t:"创意拯救 · 拉环机关 01",u:"https://aka.doubaocdn.com/s/ZF9ODiegjq",c:"游戏",o:"V"},
+ {t:"创意拯救 · 棋盘连线",u:"https://aka.doubaocdn.com/s/ANsFQWO4zO",c:"游戏",o:"V"},
+ {t:"创意拯救 · 水管连接",u:"https://aka.doubaocdn.com/s/q1I0aTEmu4",c:"游戏",o:"V"},
+ {t:"3D 剧情 01",u:"https://aka.doubaocdn.com/s/0oIQn1jzaD",c:"游戏",o:"V"},
+ {t:"3D 剧情 02",u:"https://aka.doubaocdn.com/s/EgpPQdj6Em",c:"游戏",o:"V"},
+ {t:"3D 剧情 03",u:"https://aka.doubaocdn.com/s/QP5eLdknOA",c:"游戏",o:"V"},
+ {t:"3D 剧情 04",u:"https://aka.doubaocdn.com/s/I9vXQ0tjsn",c:"游戏",o:"V"},
+ {t:"3D 剧情 05",u:"https://aka.doubaocdn.com/s/dRzSkhGhEZ",c:"游戏",o:"V"},
+ {t:"十连抽卡演出",u:"https://aka.doubaocdn.com/s/K56OFAqVJ1",c:"游戏",o:"V"},
+ {t:"角色展示",u:"https://aka.doubaocdn.com/s/yD95bte1a6",c:"游戏",o:"V"},
+ {t:"转刀",u:"https://aka.doubaocdn.com/s/UnVt5OPZ1C",c:"游戏",o:"V"},
+ {t:"Z 形关卡 · 绿色背景",u:"https://aka.doubaocdn.com/s/wDnOh5tyC1",c:"游戏",o:"V"},
+ {t:"吃豆关卡 · 卡通绿底",u:"https://aka.doubaocdn.com/s/AA76V0f8lf",c:"游戏",o:"V"},
+ {t:"爆裂守卫",u:"https://aka.doubaocdn.com/s/oUtgzy8xKW",c:"游戏",o:"V"},
+ {t:"弹珠弹射关卡",u:"https://aka.doubaocdn.com/s/e5WaH2XQHY",c:"游戏",o:"V"},
+ {t:"炮台升级 · 第二版",u:"https://aka.doubaocdn.com/s/fp54v8ukIS",c:"游戏",o:"V"},
+ {t:"我要打十个 · 吃鱼大作战",u:"https://aka.doubaocdn.com/s/8Zj85kXWA7",c:"游戏",o:"V"},
+ {t:"方向选择 · 吃鱼片头",u:"https://aka.doubaocdn.com/s/SlcWXfNyfW",c:"游戏",o:"V"},
+ {t:"贞子剧情 · U 形窄道",u:"https://aka.doubaocdn.com/s/TKjHNDzOzp",c:"游戏",o:"V"},
+ {t:"弹射小球 · 加底座版",u:"https://aka.doubaocdn.com/s/Jj0P3Nk7al",c:"游戏",o:"V"},
+ {t:"弹射小球 · 相机图标失败混剪",u:"https://aka.doubaocdn.com/s/6uUwCNBH5p",c:"游戏",o:"V"},
+ {t:"弹射小球 · 齿轮关卡（红色版）",u:"https://aka.doubaocdn.com/s/fZNQI3ZWhs",c:"游戏",o:"V"},
+ {t:"抽卡 + 角色展示",u:"https://aka.doubaocdn.com/s/hVU46ftUsK",c:"游戏",o:"H"},
+ {t:"角色卡面 · 科技感",u:"https://aka.doubaocdn.com/s/oUovzo6Yls",c:"游戏",o:"H"},
+ {t:"AI 肖像转场",u:"https://aka.doubaocdn.com/s/xrqkFAE1yb",c:"风格模板",o:"V"},
+ {t:"跳舞模板 V2",u:"https://aka.doubaocdn.com/s/XFwYKD2DRo",c:"风格模板",o:"V"},
+ {t:"热点复刻 V1",u:"https://aka.doubaocdn.com/s/FqePUPZFgU",c:"风格模板",o:"V"},
+ {t:"热点复刻 V3",u:"https://aka.doubaocdn.com/s/YPL7gourMS",c:"风格模板",o:"V"},
+ {t:"动漫二次元转绘",u:"https://aka.doubaocdn.com/s/O1Nd7pE2vg",c:"风格模板",o:"V"},
+ {t:"卡点混剪 · 江苏",u:"https://aka.doubaocdn.com/s/VAm8DHNwYM",c:"风格模板",o:"V"},
+ {t:"漫画分格 MV",u:"https://aka.doubaocdn.com/s/7yVbT9le4c",c:"风格模板",o:"V"}
+];
+
+const CATS = ["AI 创意","游戏","风格模板","ae 特效","实拍剪辑"];
+
+/* ============================================================================
+   ★★★ 首页「全部作品」默认展示的 6 张精选卡 ★★★
+   ----------------------------------------------------------------------------
+   这 6 行对应页面上 3 列 × 2 行 = 6 张卡，顺序是从左到右、从上到下：
+
+      第 1 张（第 1 行左）  → 第 2 张（中） → 第 3 张（第 1 行右）
+      第 4 张（第 2 行左）  → 第 5 张（中） → 第 6 张（第 2 行右）
+
+   【怎么换】想换第几号卡，就把对应那一行的网址换成新视频的网址即可。
+   【换顺序】把整条网址连注释一起上下移动就行。
+   【少放几张】删掉整行（保留其余行之间的英文逗号）。
+   【重要】这里填的网址必须在上面 DATA 里出现过，否则那张卡会空着显示不出来。
+            最省事的做法：直接在 DATA 里找到想要的作品，把它 u:"..." 里的网址复制过来。
+   ============================================================================ */
+const FEATURED = [
+  "https://aka.doubaocdn.com/s/IhElqECoEz",   // ① 第 1 张：西部劫匪 · 日语版（AI 创意 · 竖版）
+  "https://aka.doubaocdn.com/s/frhafQgqVL",   // ② 第 2 张：超市场景 · 猫眼切换（AI 创意 · 竖版）
+  "https://aka.doubaocdn.com/s/EgpPQdj6Em",   // ③ 第 3 张：3D 剧情 02（游戏 · 竖版）
+  "https://aka.doubaocdn.com/s/8Zj85kXWA7",   // ④ 第 4 张：我要打十个 · 吃鱼大作战（游戏 · 竖版）
+  "https://aka.doubaocdn.com/s/UnVt5OPZ1C",   // ⑤ 第 5 张：转刀（游戏 · 竖版）
+  "https://aka.doubaocdn.com/s/oUtgzy8xKW"    // ⑥ 第 6 张：爆裂守卫（游戏 · 竖版）
+];
+
+let activeCat = "全部作品", expanded = false;
+const tabsEl = document.getElementById("tabs"),
+      gridEl = document.getElementById("grid"),
+      expandWrap = document.getElementById("expandWrap"),
+      expandBtn = document.getElementById("expandBtn");
+
+const countOf = c => c === "全部作品" ? DATA.length : DATA.filter(x => x.c === c).length;
+
+function buildTabs(){
+  tabsEl.innerHTML = "";
+  ["全部作品", ...CATS].forEach(c => {
+    const b = document.createElement("button");
+    b.className = "tab" + (c === activeCat ? " active" : "");
+    b.innerHTML = '<span class="dot"></span>' + c + ' <span class="cnt en">' + countOf(c) + "</span>";
+    b.onclick = () => { activeCat = c; expanded = false; buildTabs(); render(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function listFor(){
+  const ordered = () => CATS.flatMap(c => DATA.filter(x => x.c === c));
+  if(activeCat === "全部作品"){
+    if(expanded) return ordered();
+    return FEATURED.map(u => DATA.find(d => d.u === u)).filter(Boolean);
+  }
+  return DATA.filter(x => x.c === activeCat);
+}
+
+const lazy = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(!e.isIntersecting) return;
+    const v = e.target.querySelector("video");
+    if(v && !v.src){ v.src = v.dataset.src; }
+    lazy.unobserve(e.target);
+  });
+}, {rootMargin:"400px"});
+
+function makeCard(d){
+  const el = document.createElement("article");
+  el.className = "card";
+  el.innerHTML =
+    '<div class="media ' + d.o.toLowerCase() + '">' +
+      '<video muted loop playsinline preload="none" data-src="' + d.u + '"></video>' +
+      '<div class="btn-play"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff"/></svg></div>' +
+      '<div class="cap"><b>' + d.t + '</b><i class="en">' + d.c + '</i></div>' +
+    '</div>';
+  const v = el.querySelector("video");
+  el.addEventListener("mouseenter", () => { if(!v.src) v.src = d.u; v.play().catch(()=>{}); });
+  el.addEventListener("mouseleave", () => { v.pause(); try{ v.currentTime = 0; }catch(e){} });
+  el.addEventListener("click", () => openLB(d));
+  lazy.observe(el.querySelector(".media"));
+  return el;
+}
+
+function render(){
+  gridEl.innerHTML = "";
+  listFor().forEach(d => gridEl.appendChild(makeCard(d)));
+  const hasAll = activeCat === "全部作品";
+  expandWrap.style.display = hasAll ? "flex" : "none";
+  if(hasAll){
+    expandBtn.innerHTML = expanded
+      ? '收起 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 11V1M1 6l5-5 5 5" stroke="rgba(255,255,255,.6)" stroke-width="1.4"/></svg>'
+      : '展开全部作品（81） <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6l5 5 5-5" stroke="rgba(255,255,255,.6)" stroke-width="1.4"/></svg>';
+  }
+  revealScan();
+}
+expandBtn.onclick = () => {
+  expanded = !expanded;
+  render();
+  if(expanded) gridEl.scrollIntoView({behavior:"smooth", block:"start"});
+};
+
+/* lightbox */
+const lb = document.getElementById("lb"), lbVideo = document.getElementById("lbVideo"),
+      lbTitle = document.getElementById("lbTitle"), lbMute = document.getElementById("lbMute");
+function openLB(d){
+  lbTitle.textContent = d.t + " · " + d.c;
+  lbVideo.src = d.u; lbVideo.muted = true; lbMute.textContent = "取消静音";
+  lb.classList.add("on"); document.body.style.overflow = "hidden";
+  lbVideo.play().catch(()=>{});
+}
+function closeLB(){
+  lb.classList.remove("on"); lbVideo.pause(); lbVideo.removeAttribute("src"); lbVideo.load();
+  document.body.style.overflow = "";
+}
+document.getElementById("lbClose").onclick = closeLB;
+lb.onclick = e => { if(e.target === lb) closeLB(); };
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeLB(); });
+lbMute.onclick = () => { lbVideo.muted = !lbVideo.muted; lbMute.textContent = lbVideo.muted ? "取消静音" : "静音"; };
+
+/* nav + reveal */
+const nav = document.getElementById("nav");
+addEventListener("scroll", () => nav.classList.toggle("solid", scrollY > 40), {passive:true});
+
+const ro = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); ro.unobserve(e.target); } });
+}, {threshold:.15, rootMargin:"0px 0px -8% 0px"});
+function revealScan(){ document.querySelectorAll(".rv:not(.in)").forEach(el => ro.observe(el)); }
+
+/* mobile menu */
+const mm = document.getElementById("mmenu");
+document.getElementById("burger").onclick = () => mm.classList.add("on");
+document.getElementById("mmClose").onclick = () => mm.classList.remove("on");
+mm.querySelectorAll("a").forEach(a => a.onclick = () => mm.classList.remove("on"));
+
+revealScan();
+buildTabs(); render();
+</script>
+</body>
+</html>
